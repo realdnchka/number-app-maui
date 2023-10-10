@@ -1,6 +1,7 @@
 name: Tests
 
-on: push
+on: 
+  [push]
 
 jobs:
   tests:
@@ -9,4 +10,4 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - run: dotnet test --no-build --verbosity normal
+    - run: dotnet test
