@@ -1,24 +1,18 @@
-﻿using Microsoft.Maui.Graphics.Text;
-using NumberApp.CustomControls;
+﻿using NumberApp.CustomControls;
 using NumberApp.Functional;
 
 namespace NumberApp;
 
-public partial class MainPage : ContentPage
+public partial class GamePage : ContentPage
 {
     private int _currentSum = 0;
     private List<GameButton> _buttons = new();
     
-    public MainPage()
+    public GamePage()
     {
         InitializeComponent();
         StartGame();
     }
-    
-    Label debugButton = new Label
-    {
-        Text = "Debug Button"
-    };
     
     private void OnNumBtnClicked(object sender, EventArgs e)
     {
@@ -35,8 +29,6 @@ public partial class MainPage : ContentPage
             _currentSum -= number;
         }
         
-        debugButton.Text = _currentSum.ToString();
-        
         if (_currentSum == correctSum)
         {
             ChangeNumbers();
@@ -46,7 +38,6 @@ public partial class MainPage : ContentPage
     private void StartGame()
     {
         //Creating buttons
-        ButtonsLayout.Children.Add(debugButton);
         _buttons.Add(CreateButton("FirstNumBtn"));
         _buttons.Add(CreateButton("SecondNumBtn"));
         _buttons.Add(CreateButton("ThirdNumBtn"));
@@ -57,6 +48,7 @@ public partial class MainPage : ContentPage
         {
             ButtonsLayout.Children.Add(button);
         }
+        
         ChangeNumbers();
     }
 
