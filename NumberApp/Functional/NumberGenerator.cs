@@ -21,7 +21,7 @@ public class NumGenerator: INumGenerator
         {
             //Weights are used to reduce the dispersion of the numbers
             var randomWeightMax = new Random().Next(2, 6);
-            var randomWeightMin = new Random().Next(1, 10);
+            var randomWeightMin = new Random().Next(1, 1);
 
             var minRange = 1 * randomWeightMin;
             var maxRange = (_resultNumber - _answerNumbers.Sum()) / randomWeightMax;
@@ -36,9 +36,15 @@ public class NumGenerator: INumGenerator
                 _answerNumbers.Add(_resultNumber - _answerNumbers.Sum());
             }
         }
+    }
+
+    public List<int> GetNumbers()
+    {
+        GenerateResultNumber();
+        GenerateAnswerNumbers();
         
         //Add random numbers in range of result number as decoys :)
-        for (var i = countOfAnswers; i < 5; i++)
+        for (var i = _answerNumbers.Count; i < 5; i++)
         {
             _answerNumbers.Add(new Random().Next(1, _resultNumber));
         }
@@ -48,12 +54,7 @@ public class NumGenerator: INumGenerator
         
         //Add a result number as last number
         _answerNumbers.Add(_resultNumber);
-    }
-
-    public List<int> GetNumbers()
-    {
-        GenerateResultNumber();
-        GenerateAnswerNumbers();
+        
         return _answerNumbers;
     }
 }
