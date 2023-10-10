@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NumberApp.GamePage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            x:Name="Layout"
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+            
+            <Button
+                x:Name="SumBtn"
+                SemanticProperties.Hint="Guessed number"
+                HorizontalOptions="Center" />
+            
+            <HorizontalStackLayout
+                x:Name="ButtonsLayout"
+                Spacing="25"
+                HorizontalOptions="Center">
+                
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
