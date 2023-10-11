@@ -11,9 +11,14 @@ public partial class GamePage : ContentPage
     public GamePage()
     {
         InitializeComponent();
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
         StartGame();
     }
-    
+
     private void OnNumBtnClicked(object sender, EventArgs e)
     {
         var button = (GameButton) sender;
@@ -34,22 +39,25 @@ public partial class GamePage : ContentPage
             ChangeNumbers();
         }
     }
-
+    
     private void StartGame()
     {
         //Creating buttons
-        _buttons.Add(CreateButton("FirstNumBtn"));
-        _buttons.Add(CreateButton("SecondNumBtn"));
-        _buttons.Add(CreateButton("ThirdNumBtn"));
-        _buttons.Add(CreateButton("FourthNumBtn"));
-        _buttons.Add(CreateButton("FifthNumBtn"));
-
-        foreach (var button in _buttons)
+        if (_buttons.Count == 0)
         {
-            ButtonsLayout.Children.Add(button);
+            _buttons.Add(CreateButton("FirstNumBtn"));
+            _buttons.Add(CreateButton("SecondNumBtn"));
+            _buttons.Add(CreateButton("ThirdNumBtn"));
+            _buttons.Add(CreateButton("FourthNumBtn"));
+            _buttons.Add(CreateButton("FifthNumBtn"));
+            
+            foreach (var button in _buttons)
+            {
+                ButtonsLayout.Children.Add(button);
+            }
         }
         
-        StartTimer(60);
+        StartTimer(10);
         ChangeNumbers();
     }
 
@@ -78,9 +86,10 @@ public partial class GamePage : ContentPage
         return Button;
     }
 
-    private void EndGame()
+    private async void EndGame()
     {
-        
+        var endGamePopup = new CustomPopup();
+        await Navigation.PushAsync(endGamePopup);
     }
     
     //TODO Move to another class
