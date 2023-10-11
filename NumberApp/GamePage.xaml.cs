@@ -49,6 +49,7 @@ public partial class GamePage : ContentPage
             ButtonsLayout.Children.Add(button);
         }
         
+        StartTimer(60);
         ChangeNumbers();
     }
 
@@ -75,5 +76,28 @@ public partial class GamePage : ContentPage
         
         Button.Clicked += OnNumBtnClicked;
         return Button;
+    }
+
+    private void EndGame()
+    {
+        
+    }
+    
+    //TODO Move to another class
+    private void StartTimer(int time)
+    {
+        Dispatcher.StartTimer(new TimeSpan(10000000), () =>
+        {
+            TimerLabel.Text = time.ToString();
+            time--;
+
+            if (time >= 0)
+            {
+                return true;
+            }
+            
+            EndGame();
+            return false;
+        });
     }
 }

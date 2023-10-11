@@ -10,6 +10,9 @@
             Padding="30,0"
             VerticalOptions="Center">
             
+            <Label
+                x:Name="TimerLabel"/>
+            
             <Button
                 x:Name="SumBtn"
                 SemanticProperties.Hint="Guessed number"
